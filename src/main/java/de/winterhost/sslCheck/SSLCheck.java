@@ -30,10 +30,14 @@ public class SSLCheck {
             System.exit(1);
         }
 
+        if (!domain.startsWith("https://")) {
+            domain = "https://" + domain;
+        }
+
         System.out.println("Starting SSL check for " + domain + "...");
 
         try {
-            URL url = new URL("https://" + domain);
+            URL url = new URL(domain);
             HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
             connection.connect();
 
